@@ -1,0 +1,49 @@
+header {
+    background: white;
+    border-bottom: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px
+}
+
+.branding {
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* outline: 1px solid red; */
+    height: 65px;
+    width: 65px;
+}
+
+.branding-name {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 2.5rem;
+    margin: 10px 0 0 70px;
+    /* outline: 1px solid red; */
+}
+
+.navbar {
+    /* outline: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navbar-links {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    /* outline: 1px solid blue; */
+}
+
+.navbar-links-item {
+    margin: 0;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    display: inline-block;
+}
