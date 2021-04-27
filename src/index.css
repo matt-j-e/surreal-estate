@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Lato:wght@100;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Lato:wght@100;200;300;400;900&display=swap');
 
 /* Fonts: 
 Display: 'Bodoni Moda' - Regular (400) & Bold (700) - default weight = 700
 Body: 'Lato' - Thin (100), Regular (400) & Black (900)
 */
 
+/* Colours from the house logo:
+Dark grey: #323232
+Darker green: #daad65
+Lighter green: #f9cd84
+*/
+
 body {
   margin: 0;
   padding: 0;
+  color: #323232;
   background-color: #e2e2e2;
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
