@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const FormWrapper = styled.div`
   width: 60%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 4rem auto 0 auto;
   background: #fff;
 `;
@@ -16,31 +16,68 @@ const Form = styled.form`
   div {
     padding: 0.6rem;
     margin-bottom: 1rem;
-    background: rgba(218, 173, 101, 0.35);
+    background: rgba(218, 173, 101, 0.45);
+
     label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      align-items: center;
       width: 100%;
 
       input,
       select {
-        float: right;
+        padding: 0.5rem;
+        font-size: 100%;
+        color: rgba(50, 50, 50, 1);
+        border: none;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select {
+        text-align: right;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: 50%;
+      }
+
+      input:focus, select:focus {
+        outline: 1px solid #323232;
+      }
+
+      .price-input-wrapper::before {
+        content: "£";
       }
 
       select {
         appearance: none;
         width: 150px;
       }
+
+      select::before {
+        content: "x";
+      }
     }
   }
 `;
 
 const Button = styled.button`
+  border: none;
   background-color: #daad65;
+  color: rgba(50, 50, 50, 1);
+  font-weight: 700;
   width: 50%;
   padding: 0.5rem;
   margin: 0 auto;
   font-size: 1rem;
   text-transform: uppercase;
   cursor: pointer;
+  &:focus {
+    outline: 1px solid #323232;
+  }
 `;
 
 const AddProperty = () => {
@@ -139,15 +176,17 @@ const AddProperty = () => {
 
         <div>
           <label htmlFor="price">
-            Price (&pound;)
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={fields.price}
-              onChange={handleFieldChange}
-              size="10"
-            />
+            Price
+            <span className="price-input-wrapper">
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value={fields.price}
+                onChange={handleFieldChange}
+                size="10"
+              />
+            </span>
           </label>
         </div>
 
