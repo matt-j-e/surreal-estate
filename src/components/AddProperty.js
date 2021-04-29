@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import postProperty from "../requests/postProperty";
 
 const FormWrapper = styled.div`
   width: 60%;
-  max-width: 600px;
+  max-width: 700px;
   margin: 4rem auto 0 auto;
   background: #fff;
 `;
@@ -49,7 +50,7 @@ const Form = styled.form`
       }
 
       .price-input-wrapper::before {
-        content: "£";
+        content: "£ ";
       }
 
       select {
@@ -97,7 +98,8 @@ const AddProperty = () => {
 
   const handleAddProperty = (event) => {
     event.preventDefault();
-    console.log(fields);
+    // console.log(fields);
+    postProperty(fields);
   };
 
   const handleFieldChange = (event) => {
