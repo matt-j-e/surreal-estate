@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import postProperty from "../requests/postProperty";
+import Alert from "./Alert";
 
 const FormWrapper = styled.div`
   width: 60%;
@@ -45,7 +46,8 @@ const Form = styled.form`
         width: 50%;
       }
 
-      input:focus, select:focus {
+      input:focus,
+      select:focus {
         outline: 1px solid #323232;
       }
 
@@ -92,14 +94,29 @@ const AddProperty = () => {
       city: "Manchester",
       email: "",
     },
+    alert: {
+      message: "",
+      isSuccess: false,
+    },
   };
 
   const [fields, setFields] = useState(initialState.fields);
+  const [alert, setAlert] = useState(initialState.alert);
 
   const handleAddProperty = (event) => {
     event.preventDefault();
     // console.log(fields);
-    postProperty(fields);
+    setAlert({ message: "", isSuccess: false });
+    postProperty(fields).then((status) => {
+      status === 201
+        ? setAlert({
+            message: "Your property was added to the database.",
+            isSuccess: true,
+          })
+        : setAlert({
+            message: "A server error occurred. Please try again.",
+          });
+    });
   };
 
   const handleFieldChange = (event) => {
@@ -113,6 +130,7 @@ const AddProperty = () => {
 
   return (
     <FormWrapper className="add-property">
+      <Alert message={alert.message} success={alert.isSuccess} />
       <Form onSubmit={handleAddProperty}>
         <div>
           <label htmlFor="title">

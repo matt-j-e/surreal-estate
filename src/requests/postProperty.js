@@ -7,8 +7,10 @@ const postProperty = async (values) => {
       values
     );
     console.log(response.data);
+    return response.status;
   } catch (error) {
     console.log(error.response);
+    return error.status;
   }
 };
 

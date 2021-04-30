@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Renders the navbar correctly 1`] = `
+<DocumentFragment>
+  <header>
+    <div
+      class="branding"
+    >
+      <img
+        alt="Surreal Estate logo"
+        class="logo"
+        src="./surreal-logo.png"
+        width="90"
+      />
+      <h1
+        class="branding-name"
+      >
+        Surreal
+        <span>
+          Estate
+        </span>
+      </h1>
+    </div>
+    <nav
+      class="navbar"
+    >
+      <ul
+        class="navbar-links"
+      >
+        <li
+          class="navbar-links-item"
+        >
+          <a
+            href="/"
+          >
+            View Properties
+          </a>
+        </li>
+        <li
+          class="navbar-links-item"
+        >
+          <a
+            href="/add-property"
+          >
+            Add a Property
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</DocumentFragment>
+`;

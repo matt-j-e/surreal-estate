@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert rendering renders no alert when no message is passed in 1`] = `<DocumentFragment />`;
+
+exports[`Alert rendering renders the error Alert correctly 1`] = `
+<DocumentFragment>
+  <p
+    class="sc-gsDJrp jSTqYq"
+  >
+    A server error occurred. Please try again.
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Alert rendering renders the success Alert correctly 1`] = `
+<DocumentFragment>
+  <p
+    class="sc-bdvvaa feCLug"
+  >
+    Your property was added to the database.
+  </p>
+</DocumentFragment>
+`;
