@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 describe("Navbar", () => {
   it("Renders the navbar correctly", () => {

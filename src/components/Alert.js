@@ -10,7 +10,7 @@ const Success = styled.p`
   font-weight: 900;
 `;
 
-const Error = styled.p`
+const Error = styled.div`
   padding: 1rem;
   text-align: center;
   color: palevioletred;
@@ -20,13 +20,12 @@ const Error = styled.p`
 
 const Alert = ({ message, success }) => {
   if (!message) return "";
-  if (message && success) return <Success>{message}</Success>;
-  return <Error>{message}</Error>;
+  return success ? <Success>{message}</Success> : <Error>{message}</Error>;
 };
 
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
-  success: PropTypes.bool
+  success: PropTypes.bool,
 };
 
 Alert.defaultProps = {
