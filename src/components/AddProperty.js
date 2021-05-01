@@ -6,13 +6,13 @@ import Alert from "./Alert";
 
 const FormWrapper = styled.div`
   width: 100%;
-  max-width: 700px;
   margin: 0 auto;
   background: #fff;
 
   @media ${device.tablet} {
     width: 80%;
     margin: 4rem auto 0 auto;
+    max-width: 700px;
   }
 
   @media ${device.laptop} {
@@ -53,7 +53,7 @@ const Form = styled.form`
 
       input[type="text"],
       input[type="email"] {
-        width: 50%;
+        width: 60%;
       }
 
       input:focus,
@@ -66,8 +66,8 @@ const Form = styled.form`
       }
 
       select {
-        appearance: none;
-        width: 150px;
+        // appearance: none;
+        width: 60%;
       }
 
       select::before {
@@ -144,12 +144,12 @@ const AddProperty = () => {
       <Form onSubmit={handleAddProperty}>
         <div>
           <label htmlFor="title">
-            Property Title
+            Description
             <input
               type="text"
               id="title"
               name="title"
-              placeholder="Property title"
+              placeholder="eg. 3 bed family home"
               value={fields.title}
               onChange={handleFieldChange}
             />
@@ -239,7 +239,7 @@ const AddProperty = () => {
 
         <div>
           <label htmlFor="email">
-            Your email address
+            Email
             <input
               type="email"
               id="email"
