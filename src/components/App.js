@@ -9,11 +9,12 @@ import "../styles/App.css";
 
 const Wrapper = styled.div`
   margin: 0 5px;
-  background-color: #e2e2e2;
+  // background-color: rgba(250, 206, 127, 0.33);
   min-height: 100vh;
 
   @media ${device.tablet} {
-    margin: 0 40px;
+    margin: 0 20px;
+    background-color: rgba(250, 206, 127, 0.33);
   }
 `;
 

@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import device from "../helpers/device";
 import PropertyCard from "./PropertyCard";
+import Alert from "./Alert";
+import getProperties from "../requests/getProperties";
+
+const PropCards = styled.div`
+  padding: 0px;
+  @media ${device.tablet} {
+    padding: 40px;
+  }
+`;
 
 const Properties = () => {
-  // return <div>Properties Page</div>;
+  const [properties, setProperties] = useState([]);
+  const [alert, setAlert] = useState({ message: "" });
+
+  useEffect(() => {
+    getProperties().then((res) => {
+      if (!res || res.status !== 200) {
+        setAlert({
+          message: "Database connection failed. Please try again later.",
+        });
+      } else {
+        setProperties(res.data);
+      }
+    });
+  }, []);
+
+  // console.log(alert, properties);
+
   return (
-    <PropertyCard
-      title="3 bedroom house"
-      type="Semi-Detached"
-      bedrooms="3"
-      bathrooms="1"
-      price="200000"
-      city="Manchester"
-      email="name@email.com"
-    />
+    <PropCards className="property-cards">
+      <Alert message={alert.message} success={false} />
+      {properties.map((property) => {
+        return (
+          <PropertyCard
+            key={property._id}
+            title={property.title}
+            type={property.type}
+            bedrooms={property.bedrooms}
+            bathroom={property.bathrooms}
+            price={property.price}
+            city={property.city}
+            email={property.email}
+          />
+        );
+      })}
+    </PropCards>
+    
   );
 };
 
