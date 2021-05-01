@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import device from "../helpers/device";
 import postProperty from "../requests/postProperty";
 import Alert from "./Alert";
 
 const FormWrapper = styled.div`
-  width: 60%;
+  width: 100%;
   max-width: 700px;
-  margin: 4rem auto 0 auto;
+  margin: 0 auto;
   background: #fff;
+
+  @media ${device.tablet} {
+    width: 80%;
+    margin: 4rem auto 0 auto;
+  }
+
+  @media ${device.laptop} {
+    width: 60%;
+  }
 `;
 
 const Form = styled.form`

@@ -22,9 +22,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
+/* #root {
   margin: 0 40px;
   background-color: #e2e2e2;
   min-height: 100vh;
-}
+} */
 
