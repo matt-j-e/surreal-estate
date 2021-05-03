@@ -5,7 +5,6 @@ import device from "../helpers/device";
 
 const Header = styled.header`
   background: white;
-  border-bottom: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

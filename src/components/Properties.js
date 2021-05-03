@@ -7,8 +7,16 @@ import getProperties from "../requests/getProperties";
 
 const PropCards = styled.div`
   padding: 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   @media ${device.tablet} {
     padding: 40px;
+  }
+  @media ${device.laptop} {
+    padding: 40px 0 0 0;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 `;
 
@@ -37,10 +45,11 @@ const Properties = () => {
         return (
           <PropertyCard
             key={property._id}
+            id={property._id}
             title={property.title}
             type={property.type}
             bedrooms={property.bedrooms}
-            bathroom={property.bathrooms}
+            bathrooms={property.bathrooms}
             price={property.price}
             city={property.city}
             email={property.email}
@@ -48,7 +57,6 @@ const Properties = () => {
         );
       })}
     </PropCards>
-    
   );
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState } from "react";
 import styled from "styled-components";
 import device from "../helpers/device";
