@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import device from "../helpers/device";
 import Navbar from "./Navbar";
-import Hero from "./Hero";
 import Properties from "./Properties";
 import AddProperty from "./AddProperty";
 import "../styles/App.css";
@@ -29,7 +28,6 @@ function App() {
     <Router>
       <Wrapper className="surreal-estate-app">
         <Navbar />
-        <Hero />
         <Switch>
           <Route exact path="/" component={Properties} />
           <Route exact path="/add-property" component={AddProperty} />

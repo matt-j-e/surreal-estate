@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import device from "../helpers/device";
 import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
+import Hero from "./Hero";
+import Sidebar from "./Sidebar";
 import getProperties from "../requests/getProperties";
+import getCity from "../requests/getCity";
 
 const PropCards = styled.div`
+  position: relative;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -36,27 +41,44 @@ const Properties = () => {
     });
   }, []);
 
-  // console.log(alert, properties);
+  const { search } = useLocation();
+  useEffect(() => {
+    getCity(search).then((res) => {
+      if (!res || res.status !== 200) {
+        setAlert({
+          message: "Database connection failed. Please try again later.",
+        });
+      } else {
+        setProperties(res.data);
+      }
+    });
+  }, [search]);
+
+  console.log(alert, properties);
 
   return (
-    <PropCards className="property-cards">
-      <Alert message={alert.message} success={false} />
-      {properties.map((property) => {
-        return (
-          <PropertyCard
-            key={property._id}
-            id={property._id}
-            title={property.title}
-            type={property.type}
-            bedrooms={property.bedrooms}
-            bathrooms={property.bathrooms}
-            price={property.price}
-            city={property.city}
-            email={property.email}
-          />
-        );
-      })}
-    </PropCards>
+    <>
+      <Hero />
+      <Sidebar />
+      <PropCards className="property-cards">
+        <Alert message={alert.message} success={false} />
+        {properties.map((property) => {
+          return (
+            <PropertyCard
+              key={property._id}
+              id={property._id}
+              title={property.title}
+              type={property.type}
+              bedrooms={property.bedrooms}
+              bathrooms={property.bathrooms}
+              price={property.price}
+              city={property.city}
+              email={property.email}
+            />
+          );
+        })}
+      </PropCards>
+    </>
   );
 };
 
