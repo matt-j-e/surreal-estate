@@ -12,10 +12,15 @@ const Wrapper = styled.div`
   margin: 0 5px;
   // background-color: rgba(250, 206, 127, 0.33);
   min-height: 100vh;
+  max-width: 1400px;
 
   @media ${device.tablet} {
     margin: 0 20px;
     background-color: rgba(250, 206, 127, 0.33);
+  }
+
+  @media ${device.laptopL} {
+    margin: 0 auto;
   }
 `;
 

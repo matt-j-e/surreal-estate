@@ -10,10 +10,10 @@ const Header = styled.header`
   justify-content: space-around;
   align-items: center;
   padding-top: 10px;
-  height: 80px;
+  height: 100px;
   @media ${device.tablet} {
     padding-top: 20px;
-    height: 120px;
+    height: 140px;
     justify-content: space-evenly;
   }
   @media ${device.laptop} {
@@ -30,30 +30,23 @@ const Branding = styled.div`
 
 const Logo = styled.img`
   position: absolute;
-  top: -9px;
   left: 0;
-  /* outline: 1px solid red; */
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   @media ${device.tablet} {
-    height: 60px;
-    width: 60px;
+    top: 9px;
+    height: 50px;
+    width: 50px;
   }
 `;
 
 const BrandingName = styled.h1`
-  font-weight: 200;
-  font-size: 2rem;
-  letter-spacing: -0.1rem;
-  color: black;
-  text-transform: uppercase;
-  margin: 0 0 0 40px;
-  span {
-    color: #daad65;
-    font-weight: 400;
-  }
+  font-weight: 900;
+  font-size: 3rem;
+  color: #daad65;
+  margin: 0 0 0 60px;
   @media ${device.tablet} {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-left: 60px;
   }
 `;
@@ -97,9 +90,7 @@ const Navbar = () => {
           alt="Surreal Estate logo"
           width="90"
         />
-        <BrandingName>
-          Surreal<span>Estate</span>
-        </BrandingName>
+        <BrandingName>pad.</BrandingName>
       </Branding>
       <Nav>
         <NavLinks>

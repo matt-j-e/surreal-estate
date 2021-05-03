@@ -3,22 +3,24 @@ import styled from "styled-components";
 import device from "../helpers/device";
 
 const HeroSection = styled.section`
+  display: none;
+
   @media ${device.laptopM} {
     display: flex;
     justify-content: center;
-    height: 516px;
-    background-image: url("./sofa.jpg");
-    background-position: bottom -134px center;
+    height: 60vh;
+    background-image: url("./sofa-crop.jpg");
+    background-position: bottom center;
     background-size: cover;
   }
-  @media ${device.laptopL} {
-    background-position: bottom -130px center;
+  @media ${device.desktop} {
+    height: 40vh;
   }
 `;
 
 const Strap = styled.h2`
   @media ${device.laptopM} {
-    margin-top: 180px;
+    margin-top: 140px;
     font-size: 4rem;
     font-weight: 900;
     color: white;
@@ -27,7 +29,10 @@ const Strap = styled.h2`
     }
   }
   @media ${device.laptopL} {
-    margin-top: 140px;
+    margin-top: 160px;
+  }
+  @media ${device.desktop} {
+    margin-top: 180px;
   }
 `;
 
