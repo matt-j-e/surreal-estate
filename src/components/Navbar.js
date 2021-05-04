@@ -1,4 +1,7 @@
 import React from "react";
+// import ReactDOM from 'react-dom';
+import PropTypes from "prop-types";
+import FacebookLogin from "react-facebook-login";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import device from "../helpers/device";
@@ -53,8 +56,16 @@ const BrandingName = styled.h1`
 
 const Nav = styled.nav`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  .facebook-button {
+    margin-left: 1rem;
+    color: #e5eaf5;
+    background-color: #4c69ba;
+    font-size: inherit;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
 `;
 
 const NavLinks = styled.ul`
@@ -80,7 +91,7 @@ const NavLinksItem = styled.li`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ onLogin, userID, onLogout }) => {
   return (
     <Header>
       <Branding className="branding">
@@ -93,6 +104,19 @@ const Navbar = () => {
         <BrandingName>pad.</BrandingName>
       </Branding>
       <Nav>
+        {userID ? (
+          <button className="facebook-button" type="button" onClick={onLogout}>
+            Logout
+          </button>
+        ) : (
+          <FacebookLogin
+            appId="262160628929367"
+            autoLoad={false}
+            fields="name.email"
+            callback={onLogin}
+            cssClass="facebook-button"
+          />
+        )}
         <NavLinks>
           <NavLinksItem>
             <Link to="/">View Properties</Link>
@@ -104,6 +128,12 @@ const Navbar = () => {
       </Nav>
     </Header>
   );
+};
+
+Navbar.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  userID: PropTypes.string.isRequired,
 };
 
 export default Navbar;

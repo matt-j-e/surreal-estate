@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import device from "../helpers/device";
@@ -25,10 +25,21 @@ const Wrapper = styled.div`
 `;
 
 function App() {
+  const [userID, setUserID] = useState("");
+
+  const handleLogin = (response) => {
+    setUserID(response.userID);
+  };
+
+  const handleLogout = () => {
+    window.FB.logout();
+    setUserID("");
+  };
+
   return (
     <Router>
       <Wrapper className="surreal-estate-app">
-        <Navbar />
+        <Navbar onLogin={handleLogin} userID={userID} onLogout={handleLogout} />
         <Hero />
         <Switch>
           <Route exact path="/" component={Properties} />
