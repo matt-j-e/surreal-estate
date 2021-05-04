@@ -12,6 +12,7 @@ const HeroSection = styled.section`
     background-image: url("./sofa-crop.jpg");
     background-position: bottom center;
     background-size: cover;
+    max-height: 530px;
   }
   @media ${device.desktop} {
     height: 40vh;

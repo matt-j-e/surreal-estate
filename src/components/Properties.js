@@ -4,7 +4,6 @@ import styled from "styled-components";
 import device from "../helpers/device";
 import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
-import Hero from "./Hero";
 import Sidebar from "./Sidebar";
 import getProperties from "../requests/getProperties";
 import getCity from "../requests/getCity";
@@ -58,7 +57,6 @@ const Properties = () => {
 
   return (
     <>
-      <Hero />
       <Sidebar />
       <PropCards className="property-cards">
         <Alert message={alert.message} success={false} />
