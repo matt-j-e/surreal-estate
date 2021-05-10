@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const postProperty = async (values) => {
+const saveFavourite = async (values) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/PropertyListing",
+      "http://localhost:3000/api/v1/Favourite",
       values
     );
     return response.status;
@@ -14,4 +14,4 @@ const postProperty = async (values) => {
   }
 };
 
-export default postProperty;
+export default saveFavourite;

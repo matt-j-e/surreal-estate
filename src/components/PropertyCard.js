@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import device from "../helpers/device";
+import getImageName from "../helpers/getImageName";
 
 const PropCard = styled.article`
   width: 100%;
   background-color: white;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 30px 5px rgba(32, 32, 32, 0.2);
   @media ${device.laptop} {
     width: 45%;
   }
@@ -43,24 +45,22 @@ const PropCardTitle = styled.h3`
   font-size: 2.3rem;
   font-weight: 300;
   letter-spacing: -0.1rem;
-  opacity: 0.5;
+  opacity: 0.8;
   color: #323232;
   @media ${device.tablet} {
-    color: black;
-    font-weight: 100;
     font-size: 3rem;
-    opacity: inherit;
+    // opacity: inherit;
   }
   @media ${device.laptop} {
     font-size: 2.2rem;
-    // letter-spacing: -0.2rem;
+    letter-spacing: -0.2rem;
   }
 `;
 
 const PropCardCity = styled.h4`
   text-transform: uppercase;
   font-weight: 400;
-  opacity: 0.5;
+  // opacity: 0.5;
 `;
 
 const PropDataSection = styled.section`
@@ -113,7 +113,24 @@ const PropCardEmail = styled.div`
   }
 `;
 
+const PropCardSaveButton = styled.button`
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  color: hsla(37, 61%, 43%, 1);
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 2px solid #daad65;
+  border-radius: 25px;
+  cursor: pointer;
+  @media ${device.tablet} {
+    padding: 1rem 0;
+  }
+`;
+
 const PropertyCard = ({
+  userID,
   id,
   title,
   type,
@@ -122,12 +139,12 @@ const PropertyCard = ({
   price,
   city,
   email,
+  onSaveProperty,
 }) => {
   const mailtoString = `mailto:${email}`;
-  console.log(id);
   return (
     <PropCard className="property-card">
-      <Image src="example3.jpg" alt="The property" />
+      <Image src={getImageName(type)} alt="The property" />
       <PropCardDetails className="property-card__details">
         <PropCardTitle className="property-card__title">{title}</PropCardTitle>
         <PropCardCity className="property-card__city">{city}</PropCardCity>
@@ -136,16 +153,24 @@ const PropertyCard = ({
           <div className="property-card__bedrooms">{bedrooms} BED</div>
           <div className="property-card__bathrooms">{bathrooms} BATH</div>
         </PropDataSection>
-        <PropCardPrice className="property-card__price">£{price}</PropCardPrice>
+        <PropCardPrice className="property-card__price">
+          £{parseFloat(price).toLocaleString("en")}
+        </PropCardPrice>
         <PropCardEmail className="property-card__email">
           <a href={mailtoString}>Email the owner</a>
         </PropCardEmail>
+        {userID && (
+          <PropCardSaveButton type="button" onClick={() => onSaveProperty(id)}>
+            Save
+          </PropCardSaveButton>
+        )}
       </PropCardDetails>
     </PropCard>
   );
 };
 
 PropertyCard.propTypes = {
+  userID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -154,6 +179,7 @@ PropertyCard.propTypes = {
   price: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  onSaveProperty: PropTypes.func.isRequired,
 };
 
 export default PropertyCard;

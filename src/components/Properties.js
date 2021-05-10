@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import device from "../helpers/device";
@@ -6,6 +7,7 @@ import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
 import Sidebar from "./Sidebar";
 import getProperties from "../requests/getProperties";
+import saveFavourite from "../requests/saveFavourite";
 import getCity from "../requests/getCity";
 
 const PropCards = styled.div`
@@ -24,7 +26,7 @@ const PropCards = styled.div`
   }
 `;
 
-const Properties = () => {
+const Properties = ({ userID }) => {
   const [properties, setProperties] = useState([]);
   const [alert, setAlert] = useState({ message: "" });
 
@@ -53,7 +55,18 @@ const Properties = () => {
     });
   }, [search]);
 
-  console.log(alert, properties);
+  const handleSaveProperty = (propertyId) => {
+    const values = {
+      propertyListing: propertyId,
+      fbUserId: userID,
+    };
+    saveFavourite(values).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+    });
+  };
+
+  // console.log(alert, properties);
 
   return (
     <>
@@ -63,6 +76,7 @@ const Properties = () => {
         {properties.map((property) => {
           return (
             <PropertyCard
+              userID={userID}
               key={property._id}
               id={property._id}
               title={property.title}
@@ -72,12 +86,21 @@ const Properties = () => {
               price={property.price}
               city={property.city}
               email={property.email}
+              onSaveProperty={handleSaveProperty}
             />
           );
         })}
       </PropCards>
     </>
   );
+};
+
+Properties.propTypes = {
+  userID: PropTypes.string,
+};
+
+Properties.defaultProps = {
+  userID: null,
 };
 
 export default Properties;

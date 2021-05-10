@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
 import styled from "styled-components";
@@ -59,12 +58,26 @@ const Nav = styled.nav`
   flex-direction: row;
   align-items: center;
   .facebook-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20%;
     margin-left: 1rem;
     color: #e5eaf5;
     background-color: #4c69ba;
-    font-size: inherit;
-    padding: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.1rem;
     cursor: pointer;
+    @media ${device.tablet} {
+      top: 20px;
+      right: 20px;
+      padding: 0.5rem;
+      width: auto;
+      font-size: inherit;
+    }
+    @media ${device.laptop} {
+      position: inherit;
+    }
   }
 `;
 
@@ -92,6 +105,7 @@ const NavLinksItem = styled.li`
 `;
 
 const Navbar = ({ onLogin, userID, onLogout }) => {
+  console.log(userID);
   return (
     <Header>
       <Branding className="branding">
@@ -112,7 +126,7 @@ const Navbar = ({ onLogin, userID, onLogout }) => {
           <FacebookLogin
             appId="262160628929367"
             autoLoad={false}
-            fields="name.email"
+            fields="name,email"
             callback={onLogin}
             cssClass="facebook-button"
           />
