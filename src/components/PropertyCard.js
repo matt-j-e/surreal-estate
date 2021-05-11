@@ -131,6 +131,7 @@ const PropCardSaveButton = styled.button`
 
 const PropertyCard = ({
   userID,
+  favouriteId,
   id,
   title,
   type,
@@ -140,10 +141,29 @@ const PropertyCard = ({
   city,
   email,
   onSaveProperty,
+  onUnsaveProperty,
 }) => {
   const mailtoString = `mailto:${email}`;
+  let button = "";
+  if (userID && !favouriteId) {
+    button = (
+      <PropCardSaveButton type="button" onClick={() => onSaveProperty(id)}>
+        Save
+      </PropCardSaveButton>
+    );
+  }
+  if (favouriteId) {
+    button = (
+      <PropCardSaveButton
+        type="button"
+        onClick={() => onUnsaveProperty(favouriteId)}
+      >
+        Remove from favourites
+      </PropCardSaveButton>
+    );
+  }
   return (
-    <PropCard className="property-card">
+    <PropCard className="property-card" id={id}>
       <Image src={getImageName(type)} alt="The property" />
       <PropCardDetails className="property-card__details">
         <PropCardTitle className="property-card__title">{title}</PropCardTitle>
@@ -159,11 +179,7 @@ const PropertyCard = ({
         <PropCardEmail className="property-card__email">
           <a href={mailtoString}>Email the owner</a>
         </PropCardEmail>
-        {userID && (
-          <PropCardSaveButton type="button" onClick={() => onSaveProperty(id)}>
-            Save
-          </PropCardSaveButton>
-        )}
+        {button}
       </PropCardDetails>
     </PropCard>
   );
@@ -171,10 +187,13 @@ const PropertyCard = ({
 
 PropertyCard.defaultProps = {
   onSaveProperty: null,
+  onUnsaveProperty: null,
+  favouriteId: null,
 };
 
 PropertyCard.propTypes = {
   userID: PropTypes.string.isRequired,
+  favouriteId: PropTypes.string,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -184,6 +203,7 @@ PropertyCard.propTypes = {
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   onSaveProperty: PropTypes.func,
+  onUnsaveProperty: PropTypes.func,
 };
 
 export default PropertyCard;

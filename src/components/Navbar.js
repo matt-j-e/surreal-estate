@@ -135,9 +135,11 @@ const Navbar = ({ onLogin, userID, onLogout }) => {
           <NavLinksItem>
             <Link to="/">View Properties</Link>
           </NavLinksItem>
-          <NavLinksItem>
-            <Link to="/saved-properties">Saved Properties</Link>
-          </NavLinksItem>
+          {userID && (
+            <NavLinksItem>
+              <Link to="/saved-properties">Saved Properties</Link>
+            </NavLinksItem>
+          )}
           <NavLinksItem>
             <Link to="/add-property">Add a Property</Link>
           </NavLinksItem>

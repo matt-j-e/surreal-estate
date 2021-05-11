@@ -6,6 +6,7 @@ import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
 // import Sidebar from "./Sidebar";
 import getFavourites from "../requests/getFavourites";
+import deleteFavourite from "../requests/deleteFavourite";
 
 const PropCards = styled.div`
   position: relative;
@@ -42,13 +43,23 @@ const SavedProperties = ({ userID }) => {
         setSavedProperties(userFaves);
       }
     });
-  }, []);
+  }, [userID]);
 
   console.log(savedProperties);
 
+  const handleUnsaveProperty = (favouriteId) => {
+    deleteFavourite(favouriteId).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+    });
+    const reducedFaves = savedProperties.filter(
+      (property) => property._id !== favouriteId
+    );
+    setSavedProperties(reducedFaves);
+  };
+
   return (
     <>
-      {/* <Sidebar /> */}
       <PropCards className="property-cards">
         <Alert message={alert.message} success={false} />
         {savedProperties.map((property) => {
@@ -65,6 +76,7 @@ const SavedProperties = ({ userID }) => {
               price={property.propertyListing.price}
               city={property.propertyListing.city}
               email={property.propertyListing.email}
+              onUnsaveProperty={handleUnsaveProperty}
             />
           );
         })}
