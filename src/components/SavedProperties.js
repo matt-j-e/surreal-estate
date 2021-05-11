@@ -4,7 +4,7 @@ import styled from "styled-components";
 import device from "../helpers/device";
 import PropertyCard from "./PropertyCard";
 import Alert from "./Alert";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
 import getFavourites from "../requests/getFavourites";
 
 const PropCards = styled.div`
@@ -37,33 +37,34 @@ const SavedProperties = ({ userID }) => {
         console.log(res.data);
         const userFaves = [];
         res.data.forEach((property) => {
-          userFaves.push(property.propertyListing);
-          setSavedProperties(userFaves);
+          userFaves.push(property);
         });
+        setSavedProperties(userFaves);
       }
     });
-  }, [userID]);
+  }, []);
 
   console.log(savedProperties);
 
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <PropCards className="property-cards">
         <Alert message={alert.message} success={false} />
         {savedProperties.map((property) => {
           return (
             <PropertyCard
               userID={userID}
-              key={property._id}
-              id={property._id}
-              title={property.title}
-              type={property.type}
-              bedrooms={property.bedrooms}
-              bathrooms={property.bathrooms}
-              price={property.price}
-              city={property.city}
-              email={property.email}
+              favouriteId={property._id}
+              key={property.propertyListing._id}
+              id={property.propertyListing._id}
+              title={property.propertyListing.title}
+              type={property.propertyListing.type}
+              bedrooms={property.propertyListing.bedrooms}
+              bathrooms={property.propertyListing.bathrooms}
+              price={property.propertyListing.price}
+              city={property.propertyListing.city}
+              email={property.propertyListing.email}
             />
           );
         })}

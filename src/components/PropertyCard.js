@@ -169,6 +169,10 @@ const PropertyCard = ({
   );
 };
 
+PropertyCard.defaultProps = {
+  onSaveProperty: null,
+};
+
 PropertyCard.propTypes = {
   userID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
@@ -179,7 +183,7 @@ PropertyCard.propTypes = {
   price: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  onSaveProperty: PropTypes.func.isRequired,
+  onSaveProperty: PropTypes.func,
 };
 
 export default PropertyCard;
