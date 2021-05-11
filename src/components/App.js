@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import device from "../helpers/device";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
@@ -43,17 +48,20 @@ function App() {
         <Navbar onLogin={handleLogin} userID={userID} onLogout={handleLogout} />
         <Hero />
         <Switch>
-          {/* <Route exact path="/" component={Properties} userID={userID} /> */}
           <Route
             exact
             path="/"
             render={(props) => <Properties {...props} userID={userID} />}
           />
-          <Route
-            exact
-            path="/saved-properties"
-            render={(props) => <SavedProperties {...props} userID={userID} />}
-          />
+          {userID ? (
+            <Route
+              exact
+              path="/saved-properties"
+              render={(props) => <SavedProperties {...props} userID={userID} />}
+            />
+          ) : (
+            <Redirect to="/" />
+          )}
           <Route exact path="/add-property" component={AddProperty} />
         </Switch>
       </Wrapper>
