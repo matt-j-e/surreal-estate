@@ -5,6 +5,7 @@ import device from "../helpers/device";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Properties from "./Properties";
+import SavedProperties from "./SavedProperties";
 import AddProperty from "./AddProperty";
 import "../styles/App.css";
 
@@ -47,6 +48,11 @@ function App() {
             exact
             path="/"
             render={(props) => <Properties {...props} userID={userID} />}
+          />
+          <Route
+            exact
+            path="/saved-properties"
+            render={(props) => <SavedProperties {...props} userID={userID} />}
           />
           <Route exact path="/add-property" component={AddProperty} />
         </Switch>
