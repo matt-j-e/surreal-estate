@@ -53,6 +53,7 @@ function App() {
             path="/"
             render={(props) => <Properties {...props} userID={userID} />}
           />
+          <Route exact path="/add-property" component={AddProperty} />
           {userID ? (
             <Route
               exact
@@ -62,7 +63,6 @@ function App() {
           ) : (
             <Redirect to="/" />
           )}
-          <Route exact path="/add-property" component={AddProperty} />
         </Switch>
       </Wrapper>
     </Router>

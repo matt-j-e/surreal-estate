@@ -64,7 +64,9 @@ const PropCardCity = styled.h4`
 `;
 
 const PropDataSection = styled.section`
-  color: #daad65;
+  // color: #daad65;
+  color: #323232;
+  opacity: 0.75;
   text-transform: uppercase;
   font-weight: 700;
   padding: 1.5rem 0 1rem 0;
@@ -74,6 +76,10 @@ const PropDataSection = styled.section`
   div {
     flex-basis: 33%;
     // text-align: center;
+  }
+  i {
+    font-size: 1.3rem;
+    padding: 0 0.2rem;
   }
   @media ${device.laptop} {
     padding: 2rem 0 1rem 0;
@@ -170,8 +176,12 @@ const PropertyCard = ({
         <PropCardCity className="property-card__city">{city}</PropCardCity>
         <PropDataSection>
           <div className="property-card__type">{type}</div>
-          <div className="property-card__bedrooms">{bedrooms} BED</div>
-          <div className="property-card__bathrooms">{bathrooms} BATH</div>
+          <div className="property-card__bedrooms">
+            {bedrooms} <i className="fas fa-bed" />
+          </div>
+          <div className="property-card__bathrooms">
+            {bathrooms} <i className="fas fa-bath" />
+          </div>
         </PropDataSection>
         <PropCardPrice className="property-card__price">
           £{parseFloat(price).toLocaleString("en")}

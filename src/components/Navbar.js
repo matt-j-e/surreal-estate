@@ -88,8 +88,9 @@ const NavLinks = styled.ul`
 `;
 
 const NavLinksItem = styled.li`
+  font-size: 0.8rem;
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0 0.2rem;
   text-transform: uppercase;
   display: inline-block;
   a {
@@ -100,6 +101,7 @@ const NavLinksItem = styled.li`
     color: rgb(218, 173, 101);
   }
   @media ${device.tablet} {
+    font-size: 1rem;
     padding: 0 0 0 3rem;
   }
 `;
